@@ -14,7 +14,7 @@ const database = admin.database();
 
 // Get a reference to the Firestore
 const firestore = admin.firestore();
-const username = 'username';
+const username = 'testusername';
 const ref = database.ref("/" + username);
 ref.on("value", (snapshot) => {
   
