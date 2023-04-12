@@ -21,7 +21,7 @@ ref.on("value", (snapshot) => {
   const data = snapshot.val();
   console.log(data);
   const document =  {
-    Score : data.score,
+    Score : data.miss,
     Time : data.time,
   }
   const resetData = {
