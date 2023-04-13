@@ -17,22 +17,33 @@ const firestore = admin.firestore();
 const username = 'username';
 const ref = database.ref("/" + username);
 ref.on("value", (snapshot) => {
-  
+
   const data = snapshot.val();
   console.log(data);
-  const document =  {
-    Score : data.miss,
-    Time : data.time,
+  const score = () => {
+    const result = data.plus - data.miss
+    if (result >= 0) {
+      return result
+    } else {
+      return  0
+    };
+  }
+  const document = {
+    Miss: data.miss,
+    Plus: data.plus,
+    Time: data.time,
+    Score: score()
   }
   const resetData = {
-    score:0,
+    miss: 0,
+    plus: 0,
     status: false,
     time: 3.00,
   };
   // Convert the data to an array of objects
   // Save the data to Firestore
-    if (data.status === true) {
-      firestore.collection("TestData").add(document);
-      ref.update(resetData)
-    }
+  if (data.status === true) {
+    firestore.collection("TestData").add(document);
+    ref.update(resetData)
+  }
 });
