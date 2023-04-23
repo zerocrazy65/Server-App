@@ -14,6 +14,7 @@ const database = admin.database();
 
 // Get a reference to the Firestore
 const firestore = admin.firestore();
+// get account from flutter and save account to username
 const username = 'username';
 const ref = database.ref("/" + username);
 ref.on("value", (snapshot) => {
@@ -37,13 +38,26 @@ ref.on("value", (snapshot) => {
   const resetData = {
     miss: 0,
     plus: 0,
-    end: false,
+    end: 0,
     time: 3.00,
   };
   // Convert the data to an array of objects
   // Save the data to Firestore
-  if (data.end === true) {
+  if (data.end === 1) {
     firestore.collection("TestData").add(document);
     ref.update(resetData)
   }
 });
+
+// todo from chat gpt : change name dynamic by user account
+// Get a reference to the Realtime Database for the current user
+// const database = admin.database();
+// const username = 'username';
+// const ref = database.ref("/users/" + username);
+
+// Listen for changes on the user's database reference
+// ref.on("value", (snapshot) => {
+//   const data = snapshot.val();
+  // Process the data for this user
+  // ...
+// });
