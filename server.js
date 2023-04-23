@@ -20,13 +20,13 @@ const ref = database.ref("/" + username);
 ref.on("value", (snapshot) => {
 
   const data = snapshot.val();
-  console.log(data);
+
   const score = () => {
     const result = data.plus - data.miss
     if (result >= 0) {
       return result
     } else {
-      return  0
+      return 0
     };
   }
   const document = {
@@ -39,7 +39,8 @@ ref.on("value", (snapshot) => {
     miss: 0,
     plus: 0,
     end: 0,
-    time: 3.00,
+    status: 0,
+    time: 180,
   };
   // Convert the data to an array of objects
   // Save the data to Firestore
@@ -47,8 +48,8 @@ ref.on("value", (snapshot) => {
     firestore.collection("TestData").add(document);
     ref.update(resetData)
   }
+  
 });
-
 // todo from chat gpt : change name dynamic by user account
 // Get a reference to the Realtime Database for the current user
 // const database = admin.database();
