@@ -32,19 +32,22 @@ ref.on("value", (snapshot) => {
   const document = {
     Miss: data.miss,
     Plus: data.plus,
+    Email: data.email,
     Time: data.time,
     Score: score()
   }
   const resetData = {
-    miss: 0,
-    plus: 0,
     end: 0,
+    miss: 0,
+    email: '',
+    plus: 0,
     status: 0,
     time: 180,
   };
   // Convert the data to an array of objects
   // Save the data to Firestore
   if (data.end === 1) {
+    document.Time = 180 - document.Time
     firestore.collection("TestData").add(document);
     ref.update(resetData)
   }
