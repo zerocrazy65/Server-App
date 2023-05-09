@@ -20,7 +20,6 @@ const ref = database.ref("/" + username);
 ref.on("value", (snapshot) => {
 
   const data = snapshot.val();
-
   const score = () => {
     const result = data.plus - data.miss
     if (result >= 0) {
@@ -29,6 +28,8 @@ ref.on("value", (snapshot) => {
       return 0
     };
   }
+  console.log(data.plus1+ data.plus2)
+  ref.update({plus : data.plus1 + data.plus2})
   const document = {
     Miss: data.miss,
     Plus: data.plus,
@@ -41,6 +42,8 @@ ref.on("value", (snapshot) => {
     miss: 0,
     email: '',
     plus: 0,
+    plus1: 0,
+    plus2: 0,
     status: 0,
     time: 180,
   };
