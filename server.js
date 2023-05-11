@@ -56,15 +56,3 @@ ref.on("value", (snapshot) => {
   }
   
 });
-// todo from chat gpt : change name dynamic by user account
-// Get a reference to the Realtime Database for the current user
-// const database = admin.database();
-// const username = 'username';
-// const ref = database.ref("/users/" + username);
-
-// Listen for changes on the user's database reference
-// ref.on("value", (snapshot) => {
-//   const data = snapshot.val();
-  // Process the data for this user
-  // ...
-// });
